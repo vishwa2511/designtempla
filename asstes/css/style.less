@@ -1,92 +1,322 @@
-:root{
-    --theme-color: #283149;
-    --primary-color: #404B69;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+:root {
+    --theme-color: #eae8e8;
+    --primary-color: #1e1e1e;
+    --white-color: #fff;
     --button-color: #00818A;
     --light-color: #DBEDF3;
 }
 
 /************************* Reset CSS Start *************************/
-*{
-    margin:0px;
-    padding:0px;
-    font: inherit;
-    font-size:100%;
-    font-weight:300;
-    vertical-align:baseline;
-    box-sizing:border-box;
-    -webkit-box-sizing:border-box;
+* {
+    margin: 0px;
+    padding: 0px;
+    font: inherit; 
+    font-size: 100%;
+    font-weight: 300;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
 }
-ol, ul {list-style: none;}
-img, picture, svg, video{display: block;max-width: 100%;}
-table{border-collapse:collapse;border-spacing:0}
-textarea {white-space: revert;}
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}
-table{border-collapse:collapse;border-spacing:0}
+
+ol,
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+textarea {
+    white-space: revert;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
 /************************* Reset CSS End *************************/
 /************************* Resuse CSS Start *************************/
-.sprite{
+.banner-sprite {
+    background-image: url('../image/banner-sprite.png');
+    background-size: 500px 500px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.sprite {
     background-image: url('../image/sprite.png');
     background-size: 500px 500px;
     background-repeat: no-repeat;
     display: inline-block;
 }
-.default-flex{
+
+.default-flex {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: column;
 }
+
 /************************* Resuse CSS End *************************/
 /************************* icons Start *************************/
-
+.icn1{
+    
+}
+.icn2{
+    
+}
+.icn3{
+    
+}
 /************************* icons End *************************/
-.main-img{
+.main-img {
     position: absolute;
     max-width: 1440px;
     left: calc(50% - 720px);
-    top:0px;
+    top: 0px;
+    opacity: 0.5;
 }
-html{
-    color-scheme: dark light;
-    body{
-        min-height: 100vh;
-        .default-container{
-            max-width: 1200px;
-            width:100%;
-            margin:0 auto;
-            .default-flex();
-        }
-        header{
-            .default-container{
-                .logo{
-                    .sprite();
 
+html {
+    color-scheme: dark light;
+
+    body {
+        //min-height: 100vh;
+        .default-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            .default-flex();
+            //z-index: 1;
+            //position: relative;
+        }
+
+        header {
+            position: fixed;
+            width: 100%;
+
+            .default-container {
+                //max-width: 1400px;
+                .menu {
+                    display: flex;
+                    gap: 30px;
+                    a {
+                        &.active,
+                        &:hover {
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        main {
+            section{
+                &.banner-sec{
+                    .banner-content{
+                        
+                    }
                 }
             }
         }
-        main{
-            .default-container{
 
+        footer {
+
+        }
+        .scrolltopBtn{
+            position: fixed;
+            bottom:15px;
+            right:15px;
+            display: block;
+            padding: 5px;
+            background: #000;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            transition: all 0.2s linear;
+            &:hover {
+                transform: translate3d(0, -10px, 0);
+            }
+            &::after{
+                content: "";
+                position: absolute;
+                left: 17px;
+                z-index: 11;
+                display: block;
+                width: 16px;
+                height: 16px;
+                border-top: 2px solid #fff;
+                border-left: 2px solid #fff;
+                top: 20px;
+                transform: rotate(45deg);
             }
         }
-        footer{
+    }
+}
 
+/*************************** Animation Class Start ***************************/
+.animateCls {
+    transition: all .8s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+    &.fadeUp {
+        -moz-transform: translateY(30px);
+        -ms-transform: translateY(30px);
+        -webkit-transform: translateY(30px);
+        transform: translateY(30px)
+    }
+
+    &.fadeDown {
+        -moz-transform: translateY(-30px);
+        -ms-transform: translateY(-30px);
+        -webkit-transform: translateY(-30px);
+        transform: translateY(-30px)
+    }
+
+    &.fadeLeft {
+        -moz-transform: translateX(-30px);
+        -ms-transform: translateX(-30px);
+        -webkit-transform: translateX(-30px);
+        transform: translateX(-30px)
+    }
+
+    &.fadeRight {
+        -moz-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+        -webkit-transform: translateX(30px);
+        transform: translateX(30px)
+    }
+
+    &.animatedCls {
+        visibility: visible;
+        opacity: 1;
+        &.fadeUp {
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -webkit-transform: translateY(0);
+            transform: translateY(0)
+        }
+
+        &.fadeDown {
+            -moz-transform: translateY(0);
+            -ms-transform: translateY(0);
+            -webkit-transform: translateY(0);
+            transform: translateY(0)
+        }
+
+        &.fadeLeft {
+            -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+            -webkit-transform: translateX(0);
+            transform: translateX(0)
+        }
+
+        &.fadeRight {
+            -moz-transform: translateX(0);
+            -ms-transform: translateX(0);
+            -webkit-transform: translateX(0);
+            transform: translateX(0)
         }
     }
 }
-/*************************** Animation Class Start ***************************/
-.animate{
-    transition:all .8s ease-in-out;
-    opacity:0;
-    &.fadeInUp{-moz-transform:translateY(30px);-ms-transform:translateY(30px);-webkit-transform:translateY(30px);transform:translateY(30px)}
-    &.fadeInDown{-moz-transform:translateY(-30px);-ms-transform:translateY(-30px);-webkit-transform:translateY(-30px);transform:translateY(-30px)}
-    &.fadeInLeft{-moz-transform:translateX(-30px);-ms-transform:translateX(-30px);-webkit-transform:translateX(-30px);transform:translateX(-30px)}
-    &.fadeInRight{-moz-transform:translateX(30px);-ms-transform:translateX(30px);-webkit-transform:translateX(30px);transform:translateX(30px)}
-    &.animated{
-        opacity:1;
-        &.fadeInUp{-moz-transform:translateY(0);-ms-transform:translateY(0);-webkit-transform:translateY(0);transform:translateY(0)}
-        &.fadeInDown{-moz-transform:translateY(0);-ms-transform:translateY(0);-webkit-transform:translateY(0);transform:translateY(0)}
-        &.fadeInLeft{-moz-transform:translateX(0);-ms-transform:translateX(0);-webkit-transform:translateX(0);transform:translateX(0)}
-        &.fadeInRight{-moz-transform:translateX(0);-ms-transform:translateX(0);-webkit-transform:translateX(0);transform:translateX(0)}
+/*************************** Animation Class End ***************************/
+/*************************** Keyframes Start *****************************/
+// animation: bounceTopDown 0.8s linear infinite;
+@keyframes bounceTopDown{
+    0%,100%{
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    50%{
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
     }
 }
-/*************************** Animation Class Start ***************************/
+
+@keyframes rotation{
+    0%{
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100%{
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+/*************************** Keyframes End *****************************/
+
+/*************************** Responisve Start ***************************/
+
+//w : 1728 x 1600
+@media only screen and (max-width: 1366px) 
+    
+}
+@media only screen and (max-width: 1280px) 
+    
+}
+@media only screen and (max-width: 1200px) 
+    
+}
+@media only screen and (max-width: 1080px) 
+    
+}
+@media only screen and (max-width: 992px) 
+    
+}
+@media only screen and (max-width: 860px) 
+    
+}
+@media only screen and (max-width: 764px) 
+    
+}
+@media only screen and (max-width: 680px) 
+    
+}
+@media only screen and (max-width: 620px) 
+    
+}
+@media only screen and (max-width: 480px) 
+    
+}
+@media only screen and (max-width: 420px) 
+    
+}
+@media only screen and (max-width: 380px) 
+    
+}
+@media only screen and (max-width: 320px) 
+    
+}
+/*************************** Responisve End ***************************/

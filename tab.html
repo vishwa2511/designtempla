@@ -1,0 +1,108 @@
+<style>
+    * {
+    margin: 0px;
+    padding: 0px;
+    font: inherit; 
+    font-size: 100%;
+    font-weight: 300;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  display: flex;
+  align-items: top;
+  justify-content: space-between;
+  padding:20px 0;
+}
+
+.container .col-50{
+  width:50%;
+}
+.container .col-50 h2{
+  font-size:30px;
+  font-weight:900;
+}
+.container .col-50 .vSlider-outer{
+  max-height:320px;
+  overflow:hidden;
+}
+.container .col-50 ul{
+  list-style:none;
+}
+
+.container .col-50 ul.default-ul li{
+  margin-top:10px;
+  cursor:pointer;
+}
+.container .col-50 .vSlider-outer ul li{
+  border:1px solid #010101;
+  margin-top:20px;
+  padding:20px;
+  display:flex;
+  flex-direction: column;
+}
+
+.container .col-50 .vSlider-outer ul li h3{
+  margin-bottom:5px;
+  font-weight:600;
+}
+</style>
+<div class="container">
+    <div class="col-50">
+      <h2>5 reasons</h2>
+      <p>asdasdasdasdasd asdas dasd asd asdasdasdasd</p>
+      <ul class="default-ul">
+        <li data-tab="tab1">Title 1</li>
+        <li data-tab="tab2">Title 2</li>
+        <li data-tab="tab3">Title 3</li>
+        <li data-tab="tab4">Title 4</li>
+      </ul>
+    </div>
+    <div class="col-50">
+      <div clasS="vSlider-outer">
+        <ul>
+          <li class="tab1">
+            <h3>Title 1</h3>
+            <p>Content 1</p>
+            <p>Content 11</p>
+          </li>
+          <li class="tab2">
+            <h3>Title 2</h3>
+            <p>Content 2</p>
+            <p>Content 22</p>
+            <p>Content 23</p>
+          </li>
+          <li class="tab3">
+            <h3>Title 3</h3>
+            <p>Content 3</p>
+            <p>Content 32</p>
+          </li>
+          <li class="tab4">
+            <h3>Title 4</h3>
+            <p>Content 4</p>
+            <p>Content 42</p>
+          </li>
+        </ul>
+       </div>
+    </div>
+ </div>
+ <script>
+    $(document).ready(function(){
+  $('.default-ul li').click(function(){
+    var tabid = $(this).attr('data-tab');
+    //var tabheight = $('.vSlider-outer').find('.'+tabid).outerHeight();
+    
+    var tabidv = tabid.substr(tabid.length - 1), heightv = 0;
+    for(i = 1; i+1<= tabidv; i++){
+      heightv = heightv + $('.vSlider-outer').find('.tab'+i).outerHeight() + 20;
+    }
+    //console.log(heightv);
+   $('.vSlider-outer ul').animate({ marginTop: -heightv}, 1000);
+  });
+});
+ </script>

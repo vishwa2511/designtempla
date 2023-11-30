@@ -20,28 +20,58 @@
     <!-- <link rel="preload" href="" as="script"> -->
 
     <link rel="stylesheet" href="asstes/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <img class="main-img" src="asstes/image/main-img.png">
     <header>
         <div class="default-container">
-            <div class="logo">
-                
-            </div>
+            <a class="logo" href=""></a>
             <div class="menu">
                 
             </div>
         </div>
     </header>
     <main>
-        <div class="default-container">
+        <section class="banner-sec">
+            <div class="default-container">
+                <div class="banner-content">
+                    
+                </div>
+            </div>
+        </section>
+        <section class="five-reason">
+            <div class="default-container">
 
-        </div>
+            </div>
+        </section>
     </main>
     <footer>
-        <div class="default-container">
-            
-        </div>
+        <p></p>
     </footer>
+    <a class="scrolltopBtn" href="javascript:;"></a>
 </body>
+<script>
+     $(document).ready(function() {
+        
+        $(".scrolltopBtn").click(function() {
+            $("html, body").animate({ scrollTop: 0 }, "slow");
+            return false;
+        });
+
+        $(window).scroll(function () {
+            animation();
+        });
+        function animation(){
+            $('.animateCls').each(function () {
+                var top = $(this).offset().top + $(this).outerHeight() - 150;
+                var reached = $(window).scrollTop() + $(window).height();
+                if (reached >= top) {
+                $(this).addClass('animatedCls');
+                }
+            });
+        }
+        animation();
+     });
+</script>
 </html>

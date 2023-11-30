@@ -1,6 +1,56 @@
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiGyp8kv8JHgFVrLPTedw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLFj_V1s.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLDz8V1s.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrFJA.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9V1s.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLEj6V1s.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLCz7V1s.ttf) format('truetype');
+}
 :root {
-  --theme-color: #283149;
-  --primary-color: #404B69;
+  --theme-color: #eae8e8;
+  --primary-color: #1e1e1e;
+  --white-color: #fff;
   --button-color: #00818A;
   --light-color: #DBEDF3;
 }
@@ -14,10 +64,14 @@
   vertical-align: baseline;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 ol,
 ul {
   list-style: none;
+}
+a {
+  text-decoration: none;
 }
 img,
 picture,
@@ -52,6 +106,12 @@ table {
 }
 /************************* Reset CSS End *************************/
 /************************* Resuse CSS Start *************************/
+.banner-sprite {
+  background-image: url('../image/banner-sprite.png');
+  background-size: 500px 500px;
+  background-repeat: no-repeat;
+  display: inline-block;
+}
 .sprite {
   background-image: url('../image/sprite.png');
   background-size: 500px 500px;
@@ -62,6 +122,7 @@ table {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
 }
 /************************* Resuse CSS End *************************/
 /************************* icons Start *************************/
@@ -71,12 +132,10 @@ table {
   max-width: 1440px;
   left: calc(50% - 720px);
   top: 0px;
+  opacity: 0.5;
 }
 html {
   color-scheme: dark light;
-}
-html body {
-  min-height: 100vh;
 }
 html body .default-container {
   max-width: 1200px;
@@ -85,67 +144,129 @@ html body .default-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
 }
-html body header .default-container .logo {
-  background-image: url('../image/sprite.png');
-  background-size: 500px 500px;
-  background-repeat: no-repeat;
-  display: inline-block;
+html body header {
+  position: fixed;
+  width: 100%;
+}
+html body header .default-container .menu {
+  display: flex;
+  gap: 30px;
+}
+html body header .default-container .menu a.active,
+html body header .default-container .menu a:hover {
+  font-weight: 700;
+}
+html body .scrolltopBtn {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  display: block;
+  padding: 5px;
+  background: #000;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transition: all 0.2s linear;
+}
+html body .scrolltopBtn:hover {
+  transform: translate3d(0, -10px, 0);
+}
+html body .scrolltopBtn::after {
+  content: "";
+  position: absolute;
+  left: 17px;
+  z-index: 11;
+  display: block;
+  width: 16px;
+  height: 16px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  top: 20px;
+  transform: rotate(45deg);
 }
 /*************************** Animation Class Start ***************************/
-.animate {
+.animateCls {
   transition: all 0.8s ease-in-out;
+  visibility: hidden;
   opacity: 0;
 }
-.animate.fadeInUp {
+.animateCls.fadeUp {
   -moz-transform: translateY(30px);
   -ms-transform: translateY(30px);
   -webkit-transform: translateY(30px);
   transform: translateY(30px);
 }
-.animate.fadeInDown {
+.animateCls.fadeDown {
   -moz-transform: translateY(-30px);
   -ms-transform: translateY(-30px);
   -webkit-transform: translateY(-30px);
   transform: translateY(-30px);
 }
-.animate.fadeInLeft {
+.animateCls.fadeLeft {
   -moz-transform: translateX(-30px);
   -ms-transform: translateX(-30px);
   -webkit-transform: translateX(-30px);
   transform: translateX(-30px);
 }
-.animate.fadeInRight {
+.animateCls.fadeRight {
   -moz-transform: translateX(30px);
   -ms-transform: translateX(30px);
   -webkit-transform: translateX(30px);
   transform: translateX(30px);
 }
-.animate.animated {
+.animateCls.animatedCls {
+  visibility: visible;
   opacity: 1;
 }
-.animate.animated.fadeInUp {
+.animateCls.animatedCls.fadeUp {
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
-.animate.animated.fadeInDown {
+.animateCls.animatedCls.fadeDown {
   -moz-transform: translateY(0);
   -ms-transform: translateY(0);
   -webkit-transform: translateY(0);
   transform: translateY(0);
 }
-.animate.animated.fadeInLeft {
+.animateCls.animatedCls.fadeLeft {
   -moz-transform: translateX(0);
   -ms-transform: translateX(0);
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
-.animate.animated.fadeInRight {
+.animateCls.animatedCls.fadeRight {
   -moz-transform: translateX(0);
   -ms-transform: translateX(0);
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
-/*************************** Animation Class Start ***************************/
+/*************************** Animation Class End ***************************/
+/*************************** Keyframes Start *****************************/
+@keyframes bounceTopDown {
+  0%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+  }
+}
+@keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/*************************** Keyframes End *****************************/
+/*************************** Responisve Start ***************************/
+/*************************** Responisve End ***************************/
