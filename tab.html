@@ -161,8 +161,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height:120px;
-      padding:15px;
+      min-height:150px;
     }
 
     .swiper-slide img {
@@ -195,6 +194,9 @@
     <div class="static-box">
       <h2 class="slide-title">Slide 1</h2>
       <p class="slide-text">Text</p>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
     </div>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
@@ -202,15 +204,7 @@
         <div class="swiper-slide">Slide 2</div>
         <div class="swiper-slide">Slide 3</div>
         <div class="swiper-slide">Slide 4</div>
-        <div class="swiper-slide">Slide 5</div>
-        <div class="swiper-slide">Slide 6</div>
-        <div class="swiper-slide">Slide 7</div>
-        <div class="swiper-slide">Slide 8</div>
-        <div class="swiper-slide">Slide 9</div>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
     </div>
   </div>
   <!-- Swiper JS -->
@@ -232,24 +226,33 @@
         prevEl: ".swiper-button-prev",
       },
     });
-    $('.swiper-pagination .swiper-pagination-bullet').click(function(){
-        var tabindex = $(this).attr('data-index'), dataTitle='', dataText='';
+
+    swiper.on('slideChange', function () {
+        myCallbackfunction(this);
+    });
+    
+    function myCallbackfunction(data){
+        var tabindex = data.realIndex, dataTitle='', dataText='';
         console.log(tabindex);
-          if (tabindex == 0){
+        if (tabindex == 0){
             dataTitle = "Title 1"
             dataText = "Text 1"
-          }
-          else if (tabindex == 1){
+        }
+        else if (tabindex == 1){
             dataTitle = "Title 2"
             dataText = "Text 2"
-          }
-          else if (tabindex == 2){
-            dataTitle = "Title3"
+        }
+        else if (tabindex == 2){
+            dataTitle = "Title 3"
             dataText = "Text 3"
-          }
-          $('.static-box').find('.slide-title').text(dataTitle);
-          $('.static-box').find('.slide-text').text(dataText);
-    });
+        }
+        else if (tabindex == 3){
+            dataTitle = "Title 4"
+            dataText = "Text 4"
+        }
+        $('.static-box').find('.slide-title').text(dataTitle);
+        $('.static-box').find('.slide-text').text(dataText);
+    }
   </script>
 </body>
 
